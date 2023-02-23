@@ -48,23 +48,4 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve blue-green-plan
     - name: Update Environment
-      run: |
-        echo "Setting environment to green"
-        if [ $TERRAFORM_WORKSPACE = "blue" ]; then
-          terraform workspace new green
-        else
-          terraform workspace new blue
-        fi
-        echo "::set-env name=TERRAFORM_WORKSPACE::${{ format('{0}', terraform workspace show) }}"
-
-  cleanup:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.0.5
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve -var workspace=$TERRAFORM_WORKSPACE
-
+   
