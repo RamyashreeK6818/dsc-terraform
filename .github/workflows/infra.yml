@@ -3,7 +3,7 @@ name: Create EC2 instance
 on:
   push:
     branches:
-    - main
+     - main
 
 jobs:
   create-instance:
