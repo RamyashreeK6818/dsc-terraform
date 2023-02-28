@@ -1,4 +1,4 @@
-name: Create EC2 instance with Terraform
+name: Create EC2 instance 
 
 on:
   push:
