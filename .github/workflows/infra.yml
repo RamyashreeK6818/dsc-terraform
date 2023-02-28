@@ -1,18 +1,24 @@
-name: Create EC2 instance 
+name: Create EC2 instance with Terraform
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  create-instance:
-    runs-on: self-hosted
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+  create-instance:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.0.4
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.0.4
 
     - name: Initialize Terraform
-      run: terraform init
+      run: terraform init
+
+    - name: Create EC2 instance
+      run: terraform apply -auto-approve
