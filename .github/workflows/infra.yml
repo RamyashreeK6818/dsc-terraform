@@ -1,5 +1,3 @@
-name: Create EC2 instance with Terraform
-
 on:
   push:
     branches:
@@ -7,7 +5,7 @@ on:
 
 jobs:
   create-instance:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -16,9 +14,13 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.0.4
+                                
+    - name: Install Node.js
+      uses: actions/setup-node@v2
 
     - name: Initialize Terraform
       run: terraform init
 
     - name: Create EC2 instance
       run: terraform apply -auto-approve
+
