@@ -1,13 +1,6 @@
-provider "aws" {
-  region = "ap-south-1"
-} resource "aws_instance" "example" {
-  ami           = "ami-0e742cca61fb65051"
-  instance_type = "t2.micro"
-  key_name      = "git-runner"
-  security_groups = [
-    "sg-01d7551c4608b027b"
-  ]
-    tags = {
-    Name = "my-instance"
-  }
+resource "aws_instance" "this" {
+  ami                     = "ami-0dcc1e21636832c5d"
+  instance_type           = "m5.large"
+  host_resource_group_arn = "arn:aws:resource-groups:us-west-2:012345678901:group/win-testhost"
+  tenancy                 = "host"
 }
